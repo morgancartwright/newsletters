@@ -1,0 +1,1 @@
+<td class="authorPicture" style="padding-top:5px; padding-right:20px;"><span class="icon" style="padding-top:10px; padding-right:15px; padding-bottom:10px;"><img alt="image" src="
