@@ -15,6 +15,7 @@
 	// grab the query string values from the URL and store in vars
 	
 	$topic = 'tester';
+	$prop = 'merc';
 	
 	$func_file = 'tester_func.php'; // main functions file
 	// Convert topic to ad tag category. 
