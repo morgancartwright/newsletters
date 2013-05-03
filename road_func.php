@@ -21,7 +21,7 @@
 		// wire it up
 		$displayType = intval($dt); // photo only, headlines only, or headlines/blurb/photo
 		$allFeeds = array("http://feeds.mercurynews.com/mngi/rss/CustomRssServlet/568/200764.xml"=>5);
-		$images_root = $ir; //'http://extras.bayareanewsgroup.com/images/email'; // stub: will have a global config for this
+		IMAGES_ROOT = $ir; //'http://extras.bayareanewsgroup.com/images/email'; // stub: will have a global config for this
 		if(is_readable('global_config.php')) {
 	    	include_once 'global_config.php';
 		}

@@ -15,7 +15,7 @@
 		// wire it up
 		$displayType = intval($dt); // photo only, headlines only, or headlines/blurb/photo
 		$allFeeds = $fi; // array of rss feeds
-		$images_root = $ir; //'http://extras.bayareanewsgroup.com/images/email'; // stub: will have a global config for this
+		IMAGES_ROOT = $ir; //'http://extras.bayareanewsgroup.com/images/email'; // stub: will have a global config for this
 		if(is_readable('global_config.php')) {
 	    	include_once 'global_config.php';
 		}
@@ -83,13 +83,14 @@
 			// begin displaying the output
 			// if this is a photo-only item ...
 			if($displayType == 1 && $feed[$x]['enclosure'] == !null) {
-				echo  $enclosure;
+				//echo  $enclosure;
 				break;
 			}// if 1
 			
 			// if this is a headline-only item ...
 			else if($displayType == 2) {
 				include 'headlines_only_top.inc';
+				echo print_r($feedInfo) . '<br />';
 				echo $displayCount.' - <a href="#'.$displayCount.'" title="'.$displayCount.'">'.$title.'</a>';
 			}// elseif 2
 			

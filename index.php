@@ -1,20 +1,23 @@
 <?php
-
-	/*
-	* Email Newsletter main template file (index.php)
-	* ver. 0.5 4/23/2013 - wmc
-	* Digital First Media
-	*
-	* Files: index.php, newsletter_func.php, prop_config.php (one for each property),
-	* global_config.php, newsletter.css, li_ad_tags.php, prop_ad_tags.php, 
-	* between_full_items.php, headlines_only_top.inc
-	*
-	* to-dos: prop_ad_tags.php; replace source=rss; target=new
-	*/
-	
+/*
+* Email Newsletter main template file (index.php)
+* ver. 0.6 5/2/2013 - wmc
+* Digital First Media
+*/
+	require_once 'constants.php';
 	// grab the query string values from the URL and store in vars
+	//$property = "";
+	$valid_props = array('merc'=>1,'cct'=>2,'sv'=>3,'scs'=>4,'mch'=>5,'mij'=>6);
 	$property = strtolower(htmlspecialchars($_GET["prop"]));
+	
+	if (!array_key_exists($property, $valid_props)) {
+    	$property = DEFAULT_PROP;
+	}
+
+	$topic = "";
 	$topic  = strtolower(htmlspecialchars($_GET["nl"]));
+	if($topic == "") $topic = DEFAULT_TOPIC;
+	
 	$name = ucwords(htmlspecialchars($_GET["name"])); // stub for customer name
 	
 	$prefix = $property . "_"; 
@@ -24,12 +27,8 @@
 	// Convert topic to ad tag category. 
 	$adtag = $topic . 'nl'; // ad tags include URLs with e.g 'sportsnl' for category
 	
-	//$images_root = 'http://extras.bayareanewsgroup.com/images/email'; // moved to global config file
-	$itemNum = 8; // default list items if not defined per feed in 'prop_config.php' - also for global config
-	
-	if(is_readable('global_config.php')) {
-	    include_once 'global_config.php';
-	}
+	//IMAGES_ROOT = 'http://extras.bayareanewsgroup.com/images/email'; // moved to global config file
+	$limit = 20; // default list items if not defined per feed in 'prop_config.php' - also for global config
 		
 	if(is_readable($config_file)) {
 	    require_once $config_file;
@@ -38,6 +37,12 @@
 	}
 	if(is_readable($func_file)) {
 	    require_once $func_file;
+	} else {
+	    include('404.php');
+	}
+	
+	if(is_readable('global_config.php')) {
+	    require_once 'global_config.php';
 	} else {
 	    include('404.php');
 	}
@@ -74,15 +79,15 @@
 	                  <td colspan="2" bgcolor="#dddddd" style="padding-top:10px; padding-bottom:5px; font-family:Arial, Helvetica, sans-serif; font-size:11px; line-height:100%; color:#777777; text-align:center; -webkit-text-size-adjust:none;">&nbsp;</td>
 	              </tr>
 	                <tr>
-	                    <td width="50%" height="5" valign="top" style="font-size:2px; line-height:0px;"><img alt="" src="<?php echo $images_root ?>/borderTopLeft.png" width="5" height="5" align="left" vspace="0" hspace="0" border="0" style="display:block; margin:0;" /></td>
-	                    <td width="50%" height="5" valign="top" style="font-size:2px; line-height:0px;"><img alt="" src="<?php echo $images_root ?>/borderTopRight.png" width="5" height="5" align="right" vspace="0" hspace="0" border="0" style="display:block; margin:0;" /></td>
+	                    <td width="50%" height="5" valign="top" style="font-size:2px; line-height:0px;"><img alt="" src="<?php echo IMAGES_ROOT ?>/borderTopLeft.png" width="5" height="5" align="left" vspace="0" hspace="0" border="0" style="display:block; margin:0;" /></td>
+	                    <td width="50%" height="5" valign="top" style="font-size:2px; line-height:0px;"><img alt="" src="<?php echo IMAGES_ROOT ?>/borderTopRight.png" width="5" height="5" align="right" vspace="0" hspace="0" border="0" style="display:block; margin:0;" /></td>
 	                </tr>
 	                <tr>
 	                	<td colspan="2">
 	                        <table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse; text-align:left; border-spacing:0; max-width:100%; font-family:Arial, Helvetica, sans-serif; font-size:12px; line-height:100%; color:#777777;">
 	                            <tr>
 	                                <td class="logo" width="50%" style="padding-top:10px; padding-right:15px; padding-bottom:10px; padding-left:30px; font-family:'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:24px; line-height:25pt; color:#0c87c7; font-weight:300;">
-	                                    <div style="margin-top:0px; margin-bottom:0px !important; padding:0px; line-height:100%;"> <a href="http://<?php echo $property_url; ?>"><img src="<?php echo $images_root . "/" . $prefix; ?>logo.png" width="232" alt="Logo" hspace="0" vspace="0" border="0" style="display:block; max-width:100%; height:auto !important; color: #2E5C89;" /></a>
+	                                    <div style="margin-top:0px; margin-bottom:0px !important; padding:0px; line-height:100%;"> <a href="http://<?php echo $property_url; ?>"><img src="<?php echo IMAGES_ROOT . "/" . $prefix; ?>logo.png" width="232" alt="Logo" hspace="0" vspace="0" border="0" style="display:block; max-width:100%; height:auto !important; color: #2E5C89;" /></a>
 	                                    </div>
 	                                </td>
 	                                <td class="phone2" width="50%" style="padding-top:17px; padding-right:30px; padding-bottom:20px; padding-left:15px; font-family:Arial, Helvetica, sans-serif; font-size:12px; line-height:100%; color:#777777; text-align:right;"><!-- <a style="text-decoration:underline; color:#0c87c7;" href="#">previous issue<br />
@@ -95,11 +100,11 @@
 	                    </td>
 	                </tr>
 	                <tr>
-	                    <td width="50%" height="5" valign="bottom" style="font-size:2px; line-height:0px;"><img alt="" src="<?php echo $images_root ?>/borderBottomLeft.png" width="5" height="5" align="left" vspace="0" hspace="0" border="0" style="display:block; margin:0;" /></td>
-	                    <td width="50%" height="5" valign="bottom" style="font-size:2px; line-height:0px;"><img alt="" src="<?php echo $images_root ?>/borderBottomRight.png" width="5" height="5" align="right" vspace="0" hspace="0" border="0" style="display:block; margin:0;" /></td>
+	                    <td width="50%" height="5" valign="bottom" style="font-size:2px; line-height:0px;"><img alt="" src="<?php echo IMAGES_ROOT ?>/borderBottomLeft.png" width="5" height="5" align="left" vspace="0" hspace="0" border="0" style="display:block; margin:0;" /></td>
+	                    <td width="50%" height="5" valign="bottom" style="font-size:2px; line-height:0px;"><img alt="" src="<?php echo IMAGES_ROOT ?>/borderBottomRight.png" width="5" height="5" align="right" vspace="0" hspace="0" border="0" style="display:block; margin:0;" /></td>
 	                </tr>
 	                <tr>
-	                    <td colspan="2" bgcolor="#dddddd" valign="top" style="padding-bottom:20px; font-size:2px; line-height:0px; text-align:center;"><img alt="" src="<?php echo $images_root ?>/shadow_610.png" height="10" width="610" border="0" vspace="0" hspace="0" style="width:100% !important; height:10px !important;" /></td>
+	                    <td colspan="2" bgcolor="#dddddd" valign="top" style="padding-bottom:20px; font-size:2px; line-height:0px; text-align:center;"><img alt="" src="<?php echo IMAGES_ROOT ?>/shadow_610.png" height="10" width="610" border="0" vspace="0" hspace="0" style="width:100% !important; height:10px !important;" /></td>
 	                </tr>
 	            </table>
 				<!-- End of logo and phone number -->
@@ -108,7 +113,7 @@
 	                <tr>
 	                    <td width="100%" colspan="2" style="font-family:Arial, Helvetica, sans-serif; font-weight:normal; font-size:12px; line-height:15pt; color:#777777;">
 	<!-- BEGIN TOP PHOTO FEED: ITEMNUM IS OVERRIDEN IN FUNCTION TO BE 1 -->
-	<img alt="image" src="<?php getFeed(1, $feedInfo, $images_root, $limit); ?>" width="610" border="0" vspace="0" hspace="0" style="display:block; width:100% !important; height:auto !important;" />
+	<img alt="image" src="<?php getFeed(1, $feedInfo, IMAGES_ROOT, $limit); ?>" width="610" border="0" vspace="0" hspace="0" style="display:block; width:100% !important; height:auto !important;" />
 	<!-- END TOP PHOTO FEED -->
 	                    </td>
 	                </tr>
@@ -124,7 +129,7 @@
 	                              <td valign="top" class="column" style="padding-right:5px; padding-bottom:25px; padding-left:30px; font-family:Arial, Helvetica, sans-serif; font-weight:normal; font-size:14px; line-height:15pt; color:#777777;"><span style="margin-top:0px; margin-bottom:10px !important; padding-top:0px; padding-bottom:10px; font-family:'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:20px; line-height:22pt; color:#333333; font-weight:normal; border-bottom:1px; border-bottom-color:#eeeeee; border-bottom-style:solid;"><span style="margin-top:0px; margin-bottom:10px !important; padding-top:0px; padding-bottom:10px; font-family:'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:20px; line-height:22pt; color:#333333; font-weight:normal; border-bottom:0; border-bottom-color:#eeeeee; border-bottom-style:solid; font-style: normal;"><a name="toc" id="toc"></a></span><!-- 49ers, Giants and More Sports --><br />
 	                                </span>						
 	<!-- BEGIN HEADLINES ONLY FEED -->
-	<?php getFeed(2, $feedInfo, $images_root, $limit); ?>
+	<?php getFeed(2, $feedInfo, IMAGES_ROOT, $limit); ?>
 	<!-- END HEADLINES ONLY FEED -->
 									<hr size="1">
 	                              </td>
@@ -134,13 +139,13 @@
 	                   	    <tr bgcolor="#ffffff" class="row">
 	                   	      <td colspan="2" valign="top" class="column" style="padding-right:30px; padding-bottom:25px; padding-left:30px; font-family:Arial, Helvetica, sans-serif; font-weight:normal; font-size:14px; line-height:15pt; color:#777777;"><table width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse; text-align:left; font-family:Arial, Helvetica, sans-serif; font-weight:normal; font-size:12px; line-height:15pt; color:#777777;">
 	                   	        <tr>
-	                   	          <td width="50%" height="5" bgcolor="#f4f4f4" valign="top" style="font-size:2px; line-height:0px;"><img alt="" src="<?php echo $images_root ?>/borderTopLeft2.png" width="5" height="5" align="left" vspace="0" hspace="0" border="0" style="display:block; margin:0;" /></td>
-	                  	          <td width="50%" height="5" bgcolor="#f4f4f4" valign="bottom" style="font-size:2px; line-height:0px;"><img alt="" src="<?php echo $images_root ?>/borderBottomRight2.png" width="5" height="5" align="right" vspace="0" hspace="0" border="0" style="display:block; margin:0;" /></td>
+	                   	          <td width="50%" height="5" bgcolor="#f4f4f4" valign="top" style="font-size:2px; line-height:0px;"><img alt="" src="<?php echo IMAGES_ROOT ?>/borderTopLeft2.png" width="5" height="5" align="left" vspace="0" hspace="0" border="0" style="display:block; margin:0;" /></td>
+	                  	          <td width="50%" height="5" bgcolor="#f4f4f4" valign="bottom" style="font-size:2px; line-height:0px;"><img alt="" src="<?php echo IMAGES_ROOT ?>/borderBottomRight2.png" width="5" height="5" align="right" vspace="0" hspace="0" border="0" style="display:block; margin:0;" /></td>
 	                   	          <tr>
 	                   	        <tr>
 	                   	          <td width="100%" colspan="2" bgcolor="#f4f4f4" style="font-family:'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif; padding-top:15px; padding-right:20px; padding-bottom:12px; padding-left:20px; font-size:17px; line-height:18pt; color:#333333; font-weight:normal;"><span style="margin-top:0px; margin-bottom:10px !important; padding-top:0px; padding-bottom:10px; font-family:'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:20px; line-height:22pt; color:#333333; font-weight:normal; border-bottom:0; border-bottom-color:#eeeeee; border-bottom-style:solid; font-style: normal;">
 	<!-- BEGIN HEADLINE-BLURB-PHOTO LOOP -->
-	<?php getFeed(3, $feedInfo, $images_root, $limit); ?>
+	<?php getFeed(3, $feedInfo, IMAGES_ROOT, $limit); ?>
 	<!-- END HEADLINE-BLURB-PHOTO LOOP -->
 	<!-- between_full_items.php inserted here after each iteration -->
 	                  	      </table>
@@ -151,7 +156,7 @@
 	                    	    <td width="403" class="column" valign="top" style="padding-right:30px; padding-bottom:25px; padding-left:0px; font-family:Arial, Helvetica, sans-serif; font-weight:normal; font-size:14px; line-height:15pt; color:#777777;">
 	                   	        <table class="imgContainer" width="109" align="right" cellpadding="0" cellspacing="0" style="border-collapse:collapse; border-spacing:0;">
 	                   	          <tr>
-	                   	            <td width="77" class="authorPicture" style="padding-top:5px; padding-right:20px;"><a href="#toc"><img alt="Logo" src="<?php echo $images_root."/".$prefix."logo.png"; ?>" width="232" border="0" vspace="0" hspace="0" /><br />
+	                   	            <td width="77" class="authorPicture" style="padding-top:5px; padding-right:20px;"><a href="#toc"><img alt="Logo" src="<?php echo IMAGES_ROOT."/".$prefix."logo.png"; ?>" width="232" border="0" vspace="0" hspace="0" /><br />
 	                   	            </a></td>
 	               	              </tr>
 	               	            </table></td>
@@ -159,11 +164,11 @@
 	               	  </table></td>
 	                </tr>
 	                <tr>
-	                    <td width="100%" height="5" valign="bottom" style="font-size:2px; line-height:0px;"><img alt="" src="<?php echo $images_root ?>/borderBottomLeft.png" width="5" height="5" align="left" vspace="0" hspace="0" border="0" style="display:block; margin:0;" /></td>
-	                    <td width="100%" height="5" valign="bottom" style="font-size:2px; line-height:0px;"><img alt="" src="<?php echo $images_root ?>/borderBottomRight.png" width="5" height="5" align="right" vspace="0" hspace="0" border="0" style="display:block; margin:0;" /></td>
+	                    <td width="100%" height="5" valign="bottom" style="font-size:2px; line-height:0px;"><img alt="" src="<?php echo IMAGES_ROOT ?>/borderBottomLeft.png" width="5" height="5" align="left" vspace="0" hspace="0" border="0" style="display:block; margin:0;" /></td>
+	                    <td width="100%" height="5" valign="bottom" style="font-size:2px; line-height:0px;"><img alt="" src="<?php echo IMAGES_ROOT ?>/borderBottomRight.png" width="5" height="5" align="right" vspace="0" hspace="0" border="0" style="display:block; margin:0;" /></td>
 	                </tr>
 	                <tr>
-	                    <td width="100%" colspan="2" bgcolor="#dddddd" valign="top" style="padding-bottom:20px; font-size:2px; line-height:0px; text-align:center;"><img alt="" src="<?php echo $images_root ?>/shadow_610.png" height="10" width="610" border="0" vspace="0" hspace="0" style="width:100% !important; height:10px !important;" /></td>
+	                    <td width="100%" colspan="2" bgcolor="#dddddd" valign="top" style="padding-bottom:20px; font-size:2px; line-height:0px; text-align:center;"><img alt="" src="<?php echo IMAGES_ROOT ?>/shadow_610.png" height="10" width="610" border="0" vspace="0" hspace="0" style="width:100% !important; height:10px !important;" /></td>
 	                </tr>
 	          </table>
 				<!-- End of layout with sidebar -->            
@@ -171,8 +176,8 @@
 				<!-- Start of footer -->            
 	      <table class="row" width="610" bgcolor="#ffffff" align="center" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse; text-align:left; border-spacing:0; max-width:100%;">
 	                <tr>
-	                    <td width="100%" height="5" valign="top" style="font-size:2px; line-height:0px;"><img alt="" src="<?php echo $images_root ?>/borderTopLeft.png" width="5" height="5" align="left" vspace="0" hspace="0" border="0" style="display:block; margin:0;" /></td>
-	                    <td width="100%" height="5" valign="top" style="font-size:2px; line-height:0px;"><img alt="" src="<?php echo $images_root ?>/borderTopRight.png" width="5" height="5" align="right" vspace="0" hspace="0" border="0" style="display:block; margin:0;" /></td>
+	                    <td width="100%" height="5" valign="top" style="font-size:2px; line-height:0px;"><img alt="" src="<?php echo IMAGES_ROOT ?>/borderTopLeft.png" width="5" height="5" align="left" vspace="0" hspace="0" border="0" style="display:block; margin:0;" /></td>
+	                    <td width="100%" height="5" valign="top" style="font-size:2px; line-height:0px;"><img alt="" src="<?php echo IMAGES_ROOT ?>/borderTopRight.png" width="5" height="5" align="right" vspace="0" hspace="0" border="0" style="display:block; margin:0;" /></td>
 	                </tr>
 	                <tr>
 	                	<td width="100%" colspan="2">
@@ -182,25 +187,25 @@
 	                                    <a style="text-decoration:none; color:#0c87c7;" href="http://www.<?php echo $property_url; ?>/newsletters"><?php echo $property_url; ?>/newsletters</a>
 	                            </td>
 	                                <td class="socialIcons" width="50%" style="padding-top:20px; padding-right:30px; padding-bottom:18px; padding-left:15px; font-family:Arial, Helvetica, sans-serif; font-size:12px; line-height:100%; color:#777777; text-align:right;">
-										<a href="#"><img alt="Facebook" src="<?php echo $images_root ?>/facebookIcon.png" border="0" vspace="0" hspace="0" /></a>&nbsp;&nbsp;
-	                                    <a href="#"><img alt="Twitter" src="<?php echo $images_root ?>/twitterIcon.png" border="0" vspace="0" hspace="0" /></a>&nbsp;&nbsp;
-	                                    <a href="#"><img alt="Google Plus" src="<?php echo $images_root ?>/googlePlusIcon.png" border="0" vspace="0" hspace="0" /></a>&nbsp;&nbsp;
-	                                    <a href="#"><img alt="Linkedin" src="<?php echo $images_root ?>/linkedinIcon.png" border="0" vspace="0" hspace="0" /></a>
+										<a href="#"><img alt="Facebook" src="<?php echo IMAGES_ROOT ?>/facebookIcon.png" border="0" vspace="0" hspace="0" /></a>&nbsp;&nbsp;
+	                                    <a href="#"><img alt="Twitter" src="<?php echo IMAGES_ROOT ?>/twitterIcon.png" border="0" vspace="0" hspace="0" /></a>&nbsp;&nbsp;
+	                                    <a href="#"><img alt="Google Plus" src="<?php echo IMAGES_ROOT ?>/googlePlusIcon.png" border="0" vspace="0" hspace="0" /></a>&nbsp;&nbsp;
+	                                    <a href="#"><img alt="Linkedin" src="<?php echo IMAGES_ROOT ?>/linkedinIcon.png" border="0" vspace="0" hspace="0" /></a>
 	                                </td>
 	                            </tr>
 	                        </table>
 	                    </td>
 	                </tr>
 	                <tr>
-	                    <td width="100%" height="5" valign="bottom" style="font-size:2px; line-height:0px;"><img alt="" src="<?php echo $images_root ?>/borderBottomLeft.png" width="5" height="5" align="left" vspace="0" hspace="0" border="0" style="display:block; margin:0;" /></td>
-	                    <td width="100%" height="5" valign="bottom" style="font-size:2px; line-height:0px;"><img alt="" src="<?php echo $images_root ?>/borderBottomRight.png" width="5" height="5" align="right" vspace="0" hspace="0" border="0" style="display:block; margin:0;" /></td>
+	                    <td width="100%" height="5" valign="bottom" style="font-size:2px; line-height:0px;"><img alt="" src="<?php echo IMAGES_ROOT ?>/borderBottomLeft.png" width="5" height="5" align="left" vspace="0" hspace="0" border="0" style="display:block; margin:0;" /></td>
+	                    <td width="100%" height="5" valign="bottom" style="font-size:2px; line-height:0px;"><img alt="" src="<?php echo IMAGES_ROOT ?>/borderBottomRight.png" width="5" height="5" align="right" vspace="0" hspace="0" border="0" style="display:block; margin:0;" /></td>
 	                </tr>
 	                <tr>
-	                    <td width="100%" colspan="2" bgcolor="#dddddd" valign="top" style="padding-bottom:20px; font-size:2px; line-height:0px; text-align:center;"><img alt="" src="<?php echo $images_root ?>/shadow_610.png" height="10" width="610" border="0" vspace="0" hspace="0" style="width:100% !important; height:10px !important;" /></td>
+	                    <td width="100%" colspan="2" bgcolor="#dddddd" valign="top" style="padding-bottom:20px; font-size:2px; line-height:0px; text-align:center;"><img alt="" src="<?php echo IMAGES_ROOT ?>/shadow_610.png" height="10" width="610" border="0" vspace="0" hspace="0" style="width:100% !important; height:10px !important;" /></td>
 	                </tr>
 	                <tr>
 	                    <td class="footer" width="100%" colspan="2" bgcolor="#dddddd" style="padding:0px 30px 25px 30px; font-family:Arial, Helvetica, sans-serif; font-size:11px; line-height:13pt; color:#777777; text-align:center; -webkit-text-size-adjust:none;">
-	                        <p>Copyright <img alt="" src="<?php echo $images_root ?>/copyright.png" border="0" height="10" width="10" /> 2013 <a style="text-decoration:underline; color:#0c87c7;" href="http://www.<?php echo $property_url; ?>"><?php echo $property_title; ?></a>, All rights reserved.</p>
+	                        <p>Copyright <img alt="" src="<?php echo IMAGES_ROOT ?>/copyright.png" border="0" height="10" width="10" /> 2013 <a style="text-decoration:underline; color:#0c87c7;" href="http://www.<?php echo $property_url; ?>"><?php echo $property_title; ?></a>, All rights reserved.</p>
 
 <!-- ******************** BEGIN DATRAN FOOTER: REMOVE FOR PRODUCTION ********************* -->
 	<p style="color: rgb(0, 51, 102); font-size: 12px;">

@@ -11,15 +11,15 @@
                   <td colspan="2" bgcolor="#dddddd" style="padding-top:10px; padding-bottom:5px; font-family:Arial, Helvetica, sans-serif; font-size:11px; line-height:100%; color:#777777; text-align:center; -webkit-text-size-adjust:none;">&nbsp;</td>
               </tr>
                 <tr>
-                    <td width="50%" height="5" valign="top" style="font-size:2px; line-height:0px;"><img alt="" src="<?php echo $images_root ?>/borderTopLeft.png" width="5" height="5" align="left" vspace="0" hspace="0" border="0" style="display:block; margin:0;" /></td>
-                    <td width="50%" height="5" valign="top" style="font-size:2px; line-height:0px;"><img alt="" src="<?php echo $images_root ?>/borderTopRight.png" width="5" height="5" align="right" vspace="0" hspace="0" border="0" style="display:block; margin:0;" /></td>
+                    <td width="50%" height="5" valign="top" style="font-size:2px; line-height:0px;"><img alt="" src="<?php echo IMAGES_ROOT ?>/borderTopLeft.png" width="5" height="5" align="left" vspace="0" hspace="0" border="0" style="display:block; margin:0;" /></td>
+                    <td width="50%" height="5" valign="top" style="font-size:2px; line-height:0px;"><img alt="" src="<?php echo IMAGES_ROOT ?>/borderTopRight.png" width="5" height="5" align="right" vspace="0" hspace="0" border="0" style="display:block; margin:0;" /></td>
                 </tr>
                 <tr>
                 	<td colspan="2">
                         <table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse; text-align:left; border-spacing:0; max-width:100%; font-family:Arial, Helvetica, sans-serif; font-size:12px; line-height:100%; color:#777777;">
                             <tr>
                                 <td class="logo" width="50%" style="padding-top:25px; padding-right:15px; padding-bottom:25px; padding-left:30px; font-family:'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:24px; line-height:25pt; color:#0c87c7; font-weight:300;">
-                                    <div style="margin-top:0px; margin-bottom:0px !important; padding:0px; line-height:100%;"> <a href="http://<?php echo $property ?>"><img src="<?php echo $images_root . "/" . $prefix ?>logo.png" width="232" alt="Logo" hspace="0" vspace="0" border="0" style="display:block; max-width:100%; height:auto !important; color: #2E5C89;" /></a>
+                                    <div style="margin-top:0px; margin-bottom:0px !important; padding:0px; line-height:100%;"> <a href="http://<?php echo $property ?>"><img src="<?php echo IMAGES_ROOT . "/" . $prefix ?>logo.png" width="232" alt="Logo" hspace="0" vspace="0" border="0" style="display:block; max-width:100%; height:auto !important; color: #2E5C89;" /></a>
                                     </div>
                                 </td>
                                 
@@ -33,11 +33,11 @@
                     </td>
                 </tr>
                 <tr>
-                    <td width="50%" height="5" valign="bottom" style="font-size:2px; line-height:0px;"><img alt="" src="<?php echo $images_root ?>/borderBottomLeft.png" width="5" height="5" align="left" vspace="0" hspace="0" border="0" style="display:block; margin:0;" /></td>
-                    <td width="50%" height="5" valign="bottom" style="font-size:2px; line-height:0px;"><img alt="" src="<?php echo $images_root ?>/borderBottomRight.png" width="5" height="5" align="right" vspace="0" hspace="0" border="0" style="display:block; margin:0;" /></td>
+                    <td width="50%" height="5" valign="bottom" style="font-size:2px; line-height:0px;"><img alt="" src="<?php echo IMAGES_ROOT ?>/borderBottomLeft.png" width="5" height="5" align="left" vspace="0" hspace="0" border="0" style="display:block; margin:0;" /></td>
+                    <td width="50%" height="5" valign="bottom" style="font-size:2px; line-height:0px;"><img alt="" src="<?php echo IMAGES_ROOT ?>/borderBottomRight.png" width="5" height="5" align="right" vspace="0" hspace="0" border="0" style="display:block; margin:0;" /></td>
                 </tr>
                 <tr>
-                    <td colspan="2" bgcolor="#dddddd" valign="top" style="padding-bottom:20px; font-size:2px; line-height:0px; text-align:center;"><img alt="" src="<?php echo $images_root ?>/shadow_610.png" height="10" width="610" border="0" vspace="0" hspace="0" style="width:100% !important; height:10px !important;" /></td>
+                    <td colspan="2" bgcolor="#dddddd" valign="top" style="padding-bottom:20px; font-size:2px; line-height:0px; text-align:center;"><img alt="" src="<?php echo IMAGES_ROOT ?>/shadow_610.png" height="10" width="610" border="0" vspace="0" hspace="0" style="width:100% !important; height:10px !important;" /></td>
                 </tr>
             </table>
 			<!-- End of logo and phone number -->

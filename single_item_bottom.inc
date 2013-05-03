@@ -1,17 +1,17 @@
 
 <br />
-<a href="<?php echo $link ?>"><img alt="Read More" src="<?php echo $images_root ?>/readMore.png" height="32" width="100" border="0" vspace="0" hspace="0" /></a>
+<a href="<?php echo $link ?>"><img alt="Read More" src="<?php echo IMAGES_ROOT ?>/readMore.png" height="32" width="100" border="0" vspace="0" hspace="0" /></a>
                    	            <table class="imgContainer" width="50" align="right" cellpadding="0" cellspacing="0" style="border-collapse:collapse; border-spacing:0;">
                    	              <tr>
-                   	                <td width="48" class="authorPicture" style="padding-top:5px; padding-right:20px;"><a href="#toc"><img alt="TOC" src="<?php echo $images_root ?>/go-to-top-hover2.png" height="30" width="30" border="0" vspace="0" hspace="0" /><br />
+                   	                <td width="48" class="authorPicture" style="padding-top:5px; padding-right:20px;"><a href="#toc"><img alt="TOC" src="<?php echo IMAGES_ROOT ?>/go-to-top-hover2.png" height="30" width="30" border="0" vspace="0" hspace="0" /><br />
                    	                </a></td>
                	                  </tr>
                	                </table>                   	            <a style="text-decoration:underline; color:#0c87c7;" href="#"></a><br>                   	            
                    	            <a href="#"></a><a style="text-decoration:underline; color:#0c87c7;" href="#"></a></td>
                	            </tr>
                    	        <tr>
-                   	          <td width="100%" height="5" bgcolor="#f4f4f4" valign="bottom" style="font-size:2px; line-height:0px;"><img alt="" src="<?php echo $images_root ?>/borderBottomLeft2.png" width="5" height="5" align="left" vspace="0" hspace="0" border="0" style="display:block; margin:0;" /></td>
-                   	          <td width="50%" height="5" bgcolor="#f4f4f4" valign="bottom" style="font-size:2px; line-height:0px;"><img alt="" src="<?php echo $images_root ?>/borderBottomRight2.png" width="5" height="5" align="right" vspace="0" hspace="0" border="0" style="display:block; margin:0;" /></td>
+                   	          <td width="100%" height="5" bgcolor="#f4f4f4" valign="bottom" style="font-size:2px; line-height:0px;"><img alt="" src="<?php echo IMAGES_ROOT ?>/borderBottomLeft2.png" width="5" height="5" align="left" vspace="0" hspace="0" border="0" style="display:block; margin:0;" /></td>
+                   	          <td width="50%" height="5" bgcolor="#f4f4f4" valign="bottom" style="font-size:2px; line-height:0px;"><img alt="" src="<?php echo IMAGES_ROOT ?>/borderBottomRight2.png" width="5" height="5" align="right" vspace="0" hspace="0" border="0" style="display:block; margin:0;" /></td>
                	            </tr>
                  	        </table>
 						</td>
@@ -37,8 +37,8 @@ else if ($count == 6){
                    	    <tr bgcolor="#ffffff" class="row">
                    	      <td colspan="2" valign="top" class="column" style="padding-right:30px; padding-bottom:25px; padding-left:30px; font-family:Arial, Helvetica, sans-serif; font-weight:normal; font-size:14px; line-height:15pt; color:#777777;"><table width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse; text-align:left; font-family:Arial, Helvetica, sans-serif; font-weight:normal; font-size:12px; line-height:15pt; color:#777777;">
                    	        <tr>
-                   	          <td width="50%" height="5" bgcolor="#f4f4f4" valign="top" style="font-size:2px; line-height:0px;"><img alt="" src="<?php echo $images_root ?>/borderTopLeft2.png" width="5" height="5" align="left" vspace="0" hspace="0" border="0" style="display:block; margin:0;" /></td>
-                   	          <td width="50%" height="5" bgcolor="#f4f4f4" valign="top" style="font-size:2px; line-height:0px;"><img alt="" src="<?php echo $images_root ?>/borderTopRight2.png" width="5" height="5" align="right" vspace="0" hspace="0" border="0" style="display:block; margin:0;" /></td>
+                   	          <td width="50%" height="5" bgcolor="#f4f4f4" valign="top" style="font-size:2px; line-height:0px;"><img alt="" src="<?php echo IMAGES_ROOT ?>/borderTopLeft2.png" width="5" height="5" align="left" vspace="0" hspace="0" border="0" style="display:block; margin:0;" /></td>
+                   	          <td width="50%" height="5" bgcolor="#f4f4f4" valign="top" style="font-size:2px; line-height:0px;"><img alt="" src="<?php echo IMAGES_ROOT ?>/borderTopRight2.png" width="5" height="5" align="right" vspace="0" hspace="0" border="0" style="display:block; margin:0;" /></td>
                	            </tr>
                    	        <tr>
                    	          <td width="100%" colspan="2" bgcolor="#f4f4f4" style="font-family:'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif; padding-top:15px; padding-right:20px; padding-bottom:12px; padding-left:20px; font-size:17px; line-height:18pt; color:#333333; font-weight:normal;"><span style="margin-top:0px; margin-bottom:10px !important; padding-top:0px; padding-bottom:10px; font-family:'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:20px; line-height:22pt; color:#333333; font-weight:normal; border-bottom:0; border-bottom-color:#eeeeee; border-bottom-style:solid; font-style: normal;">
