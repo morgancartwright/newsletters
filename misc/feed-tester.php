@@ -1,50 +1,37 @@
 <?php
-/*
-* Email Newsletter main template file (index.php)
-* ver. 0.6 5/2/2013 - wmc
-* Digital First Media
-*/
-	require_once 'config/constants.php';
-	// grab the query string values from the URL and store in vars
-	//$property = "";
-	$valid_props = array('merc'=>1,'cct'=>2,'sv'=>3,'scs'=>4,'mch'=>5,'mij'=>6);
-	$property = strtolower(htmlspecialchars($_GET["prop"]));
-	
-	if (!array_key_exists($property, $valid_props)) {
-    	$property = DEFAULT_PROP;
-	}
 
-	$topic = "";
-	$topic  = strtolower(htmlspecialchars($_GET["nl"]));
-	if($topic == "") $topic = DEFAULT_TOPIC;
+	/*
+	* Email Newsletter main template file (index.php)
+	* ver. 0.5 4/23/2013 - wmc
+	* Digital First Media
+	*
+	* Files: index.php, newsletter_func.php, prop_config.php (one for each property),
+	* global_config.php, newsletter.css, li_ad_tags.php, prop_ad_tags.php, 
+	* between_full_items.php, headlines_only_top.inc
+	*
+	* to-dos: prop_ad_tags.php; replace source=rss; target=new
+	*/
 	
-	$name = ucwords(htmlspecialchars($_GET["name"])); // stub for customer name
+	// grab the query string values from the URL and store in vars
 	
+	$topic = 'tester';
+	$property = 'merc';
 	$prefix = $property . "_"; 
-	$config_file = 'config/'.$property . "_config.php"; // includes $feedInfo feed array
 	
-	$func_file = 'functions/newsletter_func.php'; // main functions file
+	$func_file = 'tester_func.php'; // main functions file
 	// Convert topic to ad tag category. 
-	$adtag = $topic . 'nl'; // ad tags include URLs with e.g 'sportsnl' for category
+
+	$itemNum = 5; // default list items if not defined per feed in 'prop_config.php' - also for global config
 	
-	//IMAGES_ROOT = 'http://extras.bayareanewsgroup.com/images/email'; // moved to global config file
-	$limit = 20; // default list items if not defined per feed in 'prop_config.php' - also for global config
-		
-	if(is_readable($config_file)) {
-	    require_once $config_file;
-	} else {
-	    include('includes/404.php');
+	if(is_readable('tester_config.php')) {
+	    include_once 'tester_config.php';
 	}
+		
+
 	if(is_readable($func_file)) {
 	    require_once $func_file;
 	} else {
-	    include('includes/404.php');
-	}
-	
-	if(is_readable('config/global_config.php')) {
-	    require_once 'config/global_config.php';
-	} else {
-	    include('includes/404.php');
+	    include('404.php');
 	}
 	
 	$short_title = ucwords( str_replace('-', ' ', $topic) );
@@ -62,11 +49,12 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<head>
 		<title><?php echo $title ?></title>
-		<?php include 'stylesheets/newsletter.css'; ?>  
+		<?php include 'newsletter.css'; ?>  
 	</head>
 	<body>
 	<!-- following is for development feed testing only -->
-	<!-- <pre></pre><?php print_r($feedInfo); ?></pre><br /> -->
+	<pre><?php print_r($feedInfo); ?></pre><br />
+	
 	<table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse; background-color:#dddddd;">
 	    <tr>
 	        <td class="container" style="padding-left:15px; padding-right:15px; font-family: Arial, Helvetica, sans-serif;">
@@ -144,10 +132,6 @@
 	                   	          <tr>
 	                   	        <tr>
 	                   	          <td width="100%" colspan="2" bgcolor="#f4f4f4" style="font-family:'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif; padding-top:15px; padding-right:20px; padding-bottom:12px; padding-left:20px; font-size:17px; line-height:18pt; color:#333333; font-weight:normal;"><span style="margin-top:0px; margin-bottom:10px !important; padding-top:0px; padding-bottom:10px; font-family:'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:20px; line-height:22pt; color:#333333; font-weight:normal; border-bottom:0; border-bottom-color:#eeeeee; border-bottom-style:solid; font-style: normal;">
-	<!-- BEGIN HEADLINE-BLURB-PHOTO LOOP -->
-	<?php getFeed(3, $feedInfo, IMAGES_ROOT, $limit); ?>
-	<!-- END HEADLINE-BLURB-PHOTO LOOP -->
-	<!-- between_full_items.php inserted here after each iteration -->
 	                  	      </table>
 							  </td>
 	                   	    </tr>
@@ -235,7 +219,7 @@
 	// Add headline to title, which becomes subject of email.
 	if ( preg_match("/$headline_pattern/", $page, $matches) ) {
 		$first_headline = htmlspecialchars_decode($matches[1]);
-		$first_headline = preg_replace( "/^(Biz Break|Roadshow): /i", "", $first_headline);
+		//$first_headline = preg_replace( "/^(Biz Break|Roadshow): /i", "", $first_headline);
 		$page = str_replace("</title>", ": $first_headline</title>", $page);
 	}
 	// Output modified buffer text

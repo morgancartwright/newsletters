@@ -1,20 +1,25 @@
 <?php
-/*
-* Email Newsletter main template file (index.php)
-* ver. 0.6 5/2/2013 - wmc
-* Digital First Media
-*/	
-	require_once 'config/constants.php';
-	require_once 'config/global_config.php';
+
+	/*
+	* newsletter_func.php
+	* Email Newsletter main functions file (newsletter_func.php)
+	* ver. 0.5 4/23/2013 - wmc
+	* Digital First Media
+	*
+	* Files: index.php, newsletter_func.php, prop_config.php (one for each property),
+	* global_config.php, newsletter.css, li_ad_tags.php, prop_ad_tags.php, 
+	* between_full_items.php, headlines_only_top.inc
+	*/
 	
 	function getFeed($dt, $fi, $ir, $lt){
 		// wire it up
 		$displayType = intval($dt); // photo only, headlines only, or headlines/blurb/photo
 		$allFeeds = $fi; // array of rss feeds
-		// run the rss through this script to delete extra markup
-		//$default_cleanup_script = CLEANUP_SCRIPT . '?feed=';
-		//$default_cleanup_script = 'http://qa.cal-one.net/newsletters/clean_markup.php?feed=';
-		//IMAGES_ROOT = $ir; //'http://extras.bayareanewsgroup.com/images/email'; // stub: will have a global config for this
+		IMAGES_ROOT = $ir; //'http://extras.bayareanewsgroup.com/images/email'; // stub: will have a global config for this
+		if(is_readable('global_config.php')) {
+	    	include_once 'global_config.php';
+		}
+		
 		// begin processing feeds
 		$rss = new DOMDocument(); // create a new doc to hold the output
 		$feed = array(); // create array to hold the feed items
@@ -22,8 +27,6 @@
 		//loop through all the feeds
 		foreach($allFeeds as $key=>$value){ // key = rss feed url; value = number of items to display
 			$thisFeed = $default_cleanup_script.$key;
-			//$thisFeed = CLEANUP_SCRIPT . '?feed='.$key;
-			//$thisFeed = $key;
 			$feedItems = $value;
 			$rss->load($thisFeed);
 			
@@ -80,13 +83,14 @@
 			// begin displaying the output
 			// if this is a photo-only item ...
 			if($displayType == 1 && $feed[$x]['enclosure'] == !null) {
-				echo  $enclosure;
+				//echo  $enclosure;
 				break;
 			}// if 1
 			
 			// if this is a headline-only item ...
 			else if($displayType == 2) {
-				include '../includes/headlines_only_top.inc';
+				include 'headlines_only_top.inc';
+				echo print_r($feedInfo) . '<br />';
 				echo $displayCount.' - <a href="#'.$displayCount.'" title="'.$displayCount.'">'.$title.'</a>';
 			}// elseif 2
 			
@@ -105,7 +109,7 @@
 				}
 				echo $description; // blurb
 				echo '<br />';
-				include '../includes/between_full_items.php'; // markup between each item
+				include 'between_full_items.php'; // markup between each item
 				
 			}//elseif 3
 			$displayCount++; // count it and move to next item

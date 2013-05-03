@@ -1,50 +1,46 @@
 <?php
-/*
-* Email Newsletter main template file (index.php)
-* ver. 0.6 5/2/2013 - wmc
-* Digital First Media
-*/
-	require_once 'config/constants.php';
-	// grab the query string values from the URL and store in vars
-	//$property = "";
-	$valid_props = array('merc'=>1,'cct'=>2,'sv'=>3,'scs'=>4,'mch'=>5,'mij'=>6);
-	$property = strtolower(htmlspecialchars($_GET["prop"]));
-	
-	if (!array_key_exists($property, $valid_props)) {
-    	$property = DEFAULT_PROP;
-	}
 
-	$topic = "";
-	$topic  = strtolower(htmlspecialchars($_GET["nl"]));
-	if($topic == "") $topic = DEFAULT_TOPIC;
+	/*
+	* Email Newsletter main template file (index.php)
+	* ver. 0.5 4/23/2013 - wmc
+	* Digital First Media
+	*
+	* Files: index.php, newsletter_func.php, prop_config.php (one for each property),
+	* global_config.php, newsletter.css, li_ad_tags.php, prop_ad_tags.php, 
+	* between_full_items.php, headlines_only_top.inc
+	*
+	* to-dos: prop_ad_tags.php; replace source=rss; target=new
+	*/
 	
+	// grab the query string values from the URL and store in vars
+	$property = strtolower(htmlspecialchars($_GET["prop"]));
+	$topic  = strtolower(htmlspecialchars($_GET["nl"]));
 	$name = ucwords(htmlspecialchars($_GET["name"])); // stub for customer name
 	
 	$prefix = $property . "_"; 
-	$config_file = 'config/'.$property . "_config.php"; // includes $feedInfo feed array
+	$config_file = $property . "_config.php"; // includes $feedInfo feed array
 	
-	$func_file = 'functions/newsletter_func.php'; // main functions file
+	$func_file = 'newsletter_func.php'; // main functions file
 	// Convert topic to ad tag category. 
 	$adtag = $topic . 'nl'; // ad tags include URLs with e.g 'sportsnl' for category
 	
 	//IMAGES_ROOT = 'http://extras.bayareanewsgroup.com/images/email'; // moved to global config file
-	$limit = 20; // default list items if not defined per feed in 'prop_config.php' - also for global config
+	$itemNum = 8; // default list items if not defined per feed in 'prop_config.php' - also for global config
+	
+	if(is_readable('global_config.php')) {
+	    include_once 'global_config.php';
+	}
 		
+	// next two includes must happen or we are out of business.
 	if(is_readable($config_file)) {
 	    require_once $config_file;
 	} else {
-	    include('includes/404.php');
+	    include('404.php');
 	}
 	if(is_readable($func_file)) {
 	    require_once $func_file;
 	} else {
-	    include('includes/404.php');
-	}
-	
-	if(is_readable('config/global_config.php')) {
-	    require_once 'config/global_config.php';
-	} else {
-	    include('includes/404.php');
+	    include('404.php');
 	}
 	
 	$short_title = ucwords( str_replace('-', ' ', $topic) );
@@ -62,7 +58,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<head>
 		<title><?php echo $title ?></title>
-		<?php include 'stylesheets/newsletter.css'; ?>  
+		<?php include 'newsletter.css'; ?>  
 	</head>
 	<body>
 	<!-- following is for development feed testing only -->
@@ -120,19 +116,30 @@
 					 <tr>
 	                    <td width="100%" colspan="2" style="padding-top:20px; padding-right:30px; padding-bottom:10px; padding-left:30px;">
 	                        <h2 style="margin-top:0px; margin-bottom:10px !important; padding-top:0px; padding-bottom:10px; font-family:'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:24px; line-height:22pt; color:#333333; font-weight:normal; border-bottom:1px; border-bottom-color:#eeeeee; border-bottom-style:solid;">Welcome, <?php echo $name; ?></h2>
-	 Here are your top  <?php echo ucwords($topic); ?> headlines for today:                   </td>
-	                </tr>
+	 Here is this week's  <?php echo ucwords($topic); ?>:                   </td>
+	                </tr> 
 	                <tr>
 	                	<td width="100%" colspan="2">
 	                   	  <table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse; text-align:5px; border-spacing:0; max-width:100%; font-family:Arial, Helvetica, sans-serif; font-size:12px; line-height:100%; color:#777777;">
 	                            <tr>
-	                              <td valign="top" class="column" style="padding-right:5px; padding-bottom:25px; padding-left:30px; font-family:Arial, Helvetica, sans-serif; font-weight:normal; font-size:14px; line-height:15pt; color:#777777;"><span style="margin-top:0px; margin-bottom:10px !important; padding-top:0px; padding-bottom:10px; font-family:'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:20px; line-height:22pt; color:#333333; font-weight:normal; border-bottom:1px; border-bottom-color:#eeeeee; border-bottom-style:solid;"><span style="margin-top:0px; margin-bottom:10px !important; padding-top:0px; padding-bottom:10px; font-family:'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:20px; line-height:22pt; color:#333333; font-weight:normal; border-bottom:0; border-bottom-color:#eeeeee; border-bottom-style:solid; font-style: normal;"><a name="toc" id="toc"></a></span><!-- 49ers, Giants and More Sports --><br />
-	                                </span>						
+	                              <td valign="top" class="column" style="padding-right:5px; padding-bottom:25px; padding-left:30px; font-family:Arial, Helvetica, sans-serif; font-weight:normal; font-size:14px; line-height:15pt; color:#777777;"><span style="margin-top:0px; margin-bottom:10px !important; padding-top:0px; padding-bottom:10px; font-family:'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:20px; line-height:22pt; color:#333333; font-weight:normal; border-bottom:1px; border-bottom-color:#eeeeee; border-bottom-style:solid;"><span style="margin-top:0px; margin-bottom:10px !important; padding-top:0px; padding-bottom:10px; font-family:'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:20px; line-height:22pt; color:#333333; font-weight:normal; border-bottom:0; border-bottom-color:#eeeeee; border-bottom-style:solid; font-style: normal;"><a name="toc" id="toc"></a></span><!-- This Week's Roadshow --><br />
+	                                </span>	
+									
+		<p><?php @include 'http://delivery.digitalfirstmedia.com/ConvergencePublisher/?format=genericxml2newsletter4bangfull&uri=http://feeds.mercurynews.com/mngi/rss/CustomRssServlet/568/266000.xml&paramname=title|maxItems&param=|1'; ?><br /> 
+								  </p>							
+									<hr size="1">
+	<p><strong><h3>Previously on Roadshow:</h3></strong></p>			
 	<!-- BEGIN HEADLINES ONLY FEED -->
 	<?php getFeed(2, $feedInfo, IMAGES_ROOT, $limit); ?>
 	<!-- END HEADLINES ONLY FEED -->
 									<hr size="1">
-	                              </td>
+									
+	
+								  
+								  
+								  
+								  
+								  </td>
 	                          </tr>
 	                      </table>
 	                   	  <table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse; text-align:left; border-spacing:0; max-width:100%; font-family:Arial, Helvetica, sans-serif; font-size:12px; line-height:100%; color:#777777;">
@@ -144,6 +151,8 @@
 	                   	          <tr>
 	                   	        <tr>
 	                   	          <td width="100%" colspan="2" bgcolor="#f4f4f4" style="font-family:'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif; padding-top:15px; padding-right:20px; padding-bottom:12px; padding-left:20px; font-size:17px; line-height:18pt; color:#333333; font-weight:normal;"><span style="margin-top:0px; margin-bottom:10px !important; padding-top:0px; padding-bottom:10px; font-family:'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:20px; line-height:22pt; color:#333333; font-weight:normal; border-bottom:0; border-bottom-color:#eeeeee; border-bottom-style:solid; font-style: normal;">
+
+
 	<!-- BEGIN HEADLINE-BLURB-PHOTO LOOP -->
 	<?php getFeed(3, $feedInfo, IMAGES_ROOT, $limit); ?>
 	<!-- END HEADLINE-BLURB-PHOTO LOOP -->

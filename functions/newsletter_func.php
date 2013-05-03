@@ -12,7 +12,6 @@
 		$displayType = intval($dt); // photo only, headlines only, or headlines/blurb/photo
 		$allFeeds = $fi; // array of rss feeds
 		// run the rss through this script to delete extra markup
-		//$default_cleanup_script = CLEANUP_SCRIPT . '?feed=';
 		//$default_cleanup_script = 'http://qa.cal-one.net/newsletters/clean_markup.php?feed=';
 		//IMAGES_ROOT = $ir; //'http://extras.bayareanewsgroup.com/images/email'; // stub: will have a global config for this
 		// begin processing feeds
@@ -21,9 +20,9 @@
 
 		//loop through all the feeds
 		foreach($allFeeds as $key=>$value){ // key = rss feed url; value = number of items to display
-			$thisFeed = $default_cleanup_script.$key;
+			//$thisFeed = $default_cleanup_script.$key;
 			//$thisFeed = CLEANUP_SCRIPT . '?feed='.$key;
-			//$thisFeed = $key;
+			$thisFeed = $key;
 			$feedItems = $value;
 			$rss->load($thisFeed);
 			
@@ -86,7 +85,7 @@
 			
 			// if this is a headline-only item ...
 			else if($displayType == 2) {
-				include '../includes/headlines_only_top.inc';
+				include 'includes/headlines_only_top.inc';
 				echo $displayCount.' - <a href="#'.$displayCount.'" title="'.$displayCount.'">'.$title.'</a>';
 			}// elseif 2
 			
@@ -105,7 +104,7 @@
 				}
 				echo $description; // blurb
 				echo '<br />';
-				include '../includes/between_full_items.php'; // markup between each item
+				include 'includes/between_full_items.php'; // markup between each item
 				
 			}//elseif 3
 			$displayCount++; // count it and move to next item
