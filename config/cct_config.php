@@ -26,8 +26,8 @@ if($topic == 'business') {
 } else if($topic == 'travel'){
 	$feedInfo = array("http://feeds.mercurynews.com/mngi/rss/CustomRssServlet/568/213004.xml"=>1, "http://feeds.mercurynews.com/mngi/rss/CustomRssServlet/568/200953.xml"=>15);
 	$title = "Travel";
-} else if ($topic == 'all') {
-	$feedInfo = array("http://feeds.contracostatimes.com/mngi/rss/CustomRssServlet/571/200819.xml"=>2, "http://feeds.mercurynews.com/mngi/rss/CustomRssServlet/568/200223.xml"=>2, "http://feeds.contracostatimes.com/mngi/rss/CustomRssServlet/571/200884.xml"=>2, "http://feeds.mercurynews.com/mngi/rss/CustomRssServlet/568/200733.xml"=>2, "http://feeds.mercurynews.com/mngi/rss/CustomRssServlet/568/253602.xml"=>2,  "http://feeds.mercurynews.com/mngi/rss/CustomRssServlet/568/213004.xml"=>2, "http://feeds.mercurynews.com/mngi/rss/CustomRssServlet/568/200953.xml"=>2);
+} else if ($topic == 'all'){
+	$feedInfo = array("http://feeds.contracostatimes.com/mngi/rss/CustomRssServlet/571/200884.xml"=>1, "http://feeds.mercurynews.com/mngi/rss/CustomRssServlet/568/200733.xml"=>1, "http://feeds.mercurynews.com/mngi/rss/CustomRssServlet/568/253602.xml"=>1, "http://feeds.mercurynews.com/mngi/rss/CustomRssServlet/568/200223.xml"=>1, "http://feeds.mercurynews.com/mngi/rss/CustomRssServlet/568/213004.xml"=>1,  "http://feeds.contracostatimes.com/mngi/rss/CustomRssServlet/571/200819.xml"=>1);
 	$title = "All Feeds";
 } else { // defaults to news
 	$feedInfo = array("http://feeds.contracostatimes.com/mngi/rss/CustomRssServlet/571/200819.xml"=>10, "http://feeds.mercurynews.com/mngi/rss/CustomRssServlet/568/200223.xml"=>5, "http://feeds.contracostatimes.com/mngi/rss/CustomRssServlet/571/200884.xml"=>5);

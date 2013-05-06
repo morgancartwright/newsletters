@@ -27,6 +27,8 @@
 	// Convert topic to ad tag category. 
 	$adtag = $topic . 'nl'; // ad tags include URLs with e.g 'sportsnl' for category
 	
+	$caption = "";
+	
 	//IMAGES_ROOT = 'http://extras.bayareanewsgroup.com/images/email'; // moved to global config file
 	$limit = 20; // default list items if not defined per feed in 'prop_config.php' - also for global config
 		
@@ -117,16 +119,28 @@
 	<!-- END TOP PHOTO FEED -->
 	                    </td>
 	                </tr>
-					 <tr>
-	                    <td width="100%" colspan="2" style="padding-top:20px; padding-right:30px; padding-bottom:10px; padding-left:30px;">
-	                        <h2 style="margin-top:0px; margin-bottom:10px !important; padding-top:0px; padding-bottom:10px; font-family:'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:24px; line-height:22pt; color:#333333; font-weight:normal; border-bottom:1px; border-bottom-color:#eeeeee; border-bottom-style:solid;">Welcome, <?php echo $name; ?></h2>
-	 Here are your top  <?php echo ucwords($topic); ?> headlines for today:                   </td>
-	                </tr>
-	                <tr>
-	                	<td width="100%" colspan="2">
+					<tr><td style="padding-top:2px; padding-right:0px; padding-bottom:10px; padding-left:2px; font-family:Arial, Helvetica, sans-serif; font-weight:normal; font-size:13px; line-height:15pt; color:#777777;">
+<?php echo '&nbsp;'.$caption; ?></td></tr>
+					
+					
+		
+<!-- begin 1st ad  -->
+<tr><td colspan="2" valign="top" class="column" style="padding-right:0px; padding-bottom:25px; padding-left:5px; font-family:Arial, Helvetica, sans-serif; font-weight:normal; font-size:14px; line-height:15pt; color:#777777;"><span style="padding-right:0px; padding-bottom:30px; padding-left:0px; font-family:Arial, Helvetica, sans-serif; font-weight:normal; font-size:14px; line-height:15pt; text-align:center; color:#777777;">
+<!-- BEGIN AD CODE 1 -->
+<table border="0" cellpadding="0" cellspacing="0" align="center"><tr><td colspan="2" style="text-align:center;">
+<br />
+<a style="display: block; width: 300px; height: 250px;" href="http://MY.HEZIE.COM/click?s=56430&t=newsletter&sz=300x250&li={LIST_ID}&e={EMAIL}&p={PLACEMENT_ID}" rel="nofollow"><img src="http://MY.HEZIE.COM/imp?s=56430&t=newsletter&sz=300x250&li={LIST_ID}&e={EMAIL}&p={PLACEMENT_ID}" border="0" width="300" height="250"/></a></td></tr><tr style="display:block; height:1px; line-height:1px;"><td><img src="http://MY.HEZIE.COM/imp?s=56431&t=newsletter&sz=1x1&li={LIST_ID}&e={EMAIL}&p={PLACEMENT_ID}" height="1" width="10" /></td><td><img src="http://MY.HEZIE.COM/imp?s=56432&t=newsletter&sz=1x1&li={LIST_ID}&e={EMAIL}&p={PLACEMENT_ID}" height="1" width="10" /></td></tr><tr><td align="left"><a href="http://MY.HEZIE.COM/click?s=4677&t=newsletter&sz=116x15&li={LIST_ID}&e={EMAIL}&p={PLACEMENT_ID}" rel="nofollow"><img src="http://MY.HEZIE.COM/imp?s=4677&t=newsletter&sz=116x15&li={LIST_ID}&e={EMAIL}&p={PLACEMENT_ID}" border="0"/></a></td><td align="right"><a href="http://MY.HEZIE.COM/click?s=4678&t=newsletter&sz=69x15&li={LIST_ID}&e={EMAIL}&p={PLACEMENT_ID}" rel="nofollow"><img src="http://MY.HEZIE.COM/imp?s=4678&t=newsletter&sz=69x15&li={LIST_ID}&e={EMAIL}&p={PLACEMENT_ID}" border="0"/></a></td></tr></table>
+<!-- END AD CODE 1 -->
+</span><br /></td></tr>
+		
+					
+				
+	  <tr>
+	     <td width="100%" colspan="2">
+		 
 	                   	  <table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse; text-align:5px; border-spacing:0; max-width:100%; font-family:Arial, Helvetica, sans-serif; font-size:12px; line-height:100%; color:#777777;">
 	                            <tr>
-	                              <td valign="top" class="column" style="padding-right:5px; padding-bottom:25px; padding-left:30px; font-family:Arial, Helvetica, sans-serif; font-weight:normal; font-size:14px; line-height:15pt; color:#777777;"><span style="margin-top:0px; margin-bottom:10px !important; padding-top:0px; padding-bottom:10px; font-family:'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:20px; line-height:22pt; color:#333333; font-weight:normal; border-bottom:1px; border-bottom-color:#eeeeee; border-bottom-style:solid;"><span style="margin-top:0px; margin-bottom:10px !important; padding-top:0px; padding-bottom:10px; font-family:'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:20px; line-height:22pt; color:#333333; font-weight:normal; border-bottom:0; border-bottom-color:#eeeeee; border-bottom-style:solid; font-style: normal;"><a name="toc" id="toc"></a></span><!-- 49ers, Giants and More Sports --><br />
+	                              <td valign="top" class="column" style="padding-right:5px; padding-bottom:25px; padding-left:30px; font-family:Arial, Helvetica, sans-serif; font-weight:normal; font-size:14px; line-height:15pt; color:#777777;"><span style="margin-top:0px; margin-bottom:10px !important; padding-top:0px; padding-bottom:10px; font-family:'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:20px; line-height:22pt; color:#333333; font-weight:normal; border-bottom:1px; border-bottom-color:#eeeeee; border-bottom-style:solid;"><span style="margin-top:0px; margin-bottom:10px !important; padding-top:0px; padding-bottom:1px; font-family:'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size:20px; line-height:1pt; color:#333333; font-weight:normal; border-bottom:0; border-bottom-color:#eeeeee; border-bottom-style:solid; font-style: normal;"><a name="toc" id="toc"></a></span>Today's headlines:<!-- optional secondary title position -->
 	                                </span>						
 	<!-- BEGIN HEADLINES ONLY FEED -->
 	<?php getFeed(2, $feedInfo, IMAGES_ROOT, $limit); ?>

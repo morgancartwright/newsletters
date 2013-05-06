@@ -4,6 +4,8 @@
 * ver. 0.6 5/2/2013 - wmc
 * Digital First Media
 */	
+
+	ini_set('display_errors', '0');
 	require_once 'config/constants.php';
 	require_once 'config/global_config.php';
 	
@@ -11,16 +13,17 @@
 		// wire it up
 		$displayType = intval($dt); // photo only, headlines only, or headlines/blurb/photo
 		$allFeeds = $fi; // array of rss feeds
-		// run the rss through this script to delete extra markup
-		//$default_cleanup_script = 'http://qa.cal-one.net/newsletters/clean_markup.php?feed=';
-		//IMAGES_ROOT = $ir; //'http://extras.bayareanewsgroup.com/images/email'; // stub: will have a global config for this
+		global $caption; // we reset this for use in index.php
+		
+		// option: if markup is dirty, run the rss through this script (see constants file)
+		//$default_cleanup_script = CLEANUP_SCRIPT;
+
 		// begin processing feeds
 		$rss = new DOMDocument(); // create a new doc to hold the output
 		$feed = array(); // create array to hold the feed items
 
 		//loop through all the feeds
 		foreach($allFeeds as $key=>$value){ // key = rss feed url; value = number of items to display
-			//$thisFeed = $default_cleanup_script.$key;
 			//$thisFeed = CLEANUP_SCRIPT . '?feed='.$key;
 			$thisFeed = $key;
 			$feedItems = $value;
@@ -58,8 +61,8 @@
 		
 		// begin output routines
 		$limit = intval($lt); // max number of items that can be displayed
-		$displayCount = 1; // number used with headline and anchor link
-		$displayPhotos = $photo; // true or false--currently a stub
+		$displayCount = 1; // number used with head and anchor link - not the same as $limit
+		$displayPhotos = $photo; // true or false -- currently a stub
 		
 		// if #items in feed is less than limit, we swap them
 		$arrayLength = count($feed); 
@@ -69,6 +72,8 @@
 		for($x=0;$x<$limit;$x++) {
 			$title = str_replace(' & ', ' &amp; ', $feed[$x]['title']);
 	    	$link = $feed[$x]['link'];
+			$link = str_replace("source=rss", "source=email", $link);
+			
 	    	$description = $feed[$x]['desc'];
 			$byline = $feed[$x]['byl'];
 			if($feed[$x]['enclosure'] == !null) {
@@ -77,19 +82,20 @@
 	    	$date = date('l F d, Y', strtotime($feed[$x]['date']));
 			
 			// begin displaying the output
-			// if this is a photo-only item ...
+			// dtype 1 is a photo-only item
 			if($displayType == 1 && $feed[$x]['enclosure'] == !null) {
 				echo  $enclosure;
+				$caption = $title;
 				break;
 			}// if 1
 			
-			// if this is a headline-only item ...
+			// dtype 2 is a headline-only item
 			else if($displayType == 2) {
 				include 'includes/headlines_only_top.inc';
 				echo $displayCount.' - <a href="#'.$displayCount.'" title="'.$displayCount.'">'.$title.'</a>';
 			}// elseif 2
 			
-			// if this is a full head/photo/blurb item ...
+			// dtype 3 is a full head/photo/blurb item; last item gets different markup include
 			else if($displayType == 3) {
 	        	echo '<a name="'.$displayCount.'" id="'.$displayCount.'"></a></span>'.$displayCount.' - '.$title.'</a><br>';
 				echo '</td></tr><tr>
@@ -104,9 +110,14 @@
 				}
 				echo $description; // blurb
 				echo '<br />';
-				include 'includes/between_full_items.php'; // markup between each item
+				if($x != ($limit - 1)){ // last item gets different include
+					include 'includes/between_full_items.php'; // markup between each item
+				} else {
+					include 'includes/after_full_items.php'; // markup after final item
+				}
 				
 			}//elseif 3
+			
 			$displayCount++; // count it and move to next item
 			
 		} //for
