@@ -9,6 +9,7 @@
 	define("DEFAULT_TOPIC", "news");
 	define("IMAGES_ROOT", "http://extras.bayareanewsgroup.com/images/email");
 	define("CLEANUP_SCRIPT","http://qa.cal-one.net/email/clean_markup.php");
+	define("IMAGE_FACTOR", 1.5);
 	
 	
 	

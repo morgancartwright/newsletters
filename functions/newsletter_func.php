@@ -84,14 +84,21 @@
 				$enclosure_size = getimagesize($enclosure);
        			$enclosure_width = $enclosure_size[0].'<br>';
        			$enclosure_height = $enclosure_size[1] . '<br>';
-				if($enclosure_height > $enclosure_width) $enclosure_good = FALSE;
+				if($enclosure_height > ($enclosure_width * IMAGE_FACTOR)) $enclosure_good = FALSE;
 			}
 						
 	    	$date = date('l F d, Y', strtotime($feed[$x]['date']));
 			
+			
+	//						if($enclosure_good == TRUE){
+	//				echo '<br>Enc= ' . $enclosure;
+	//			}
+			
+			
+			
 			// begin displaying the output
 			// dtype 1 is a photo-only item
-			if($displayType == 1 && $feed[$x]['enclosure'] == !null && $enclosure_good == TRUE) {
+			if($displayType == 1 && $feed[$x]['enclosure'] == !null) {
 				echo  $enclosure;
 				$caption = $title;
 				break;
@@ -109,7 +116,7 @@
 				echo '</td></tr><tr>
 	              <td width="100%" colspan="2" bgcolor="#f4f4f4" style="padding-right:20px; padding-bottom:18px; padding-left:20px; 				font-family:Arial, Helvetica, sans-serif; font-weight:normal; font-size:14px; line-height:15pt; color:#777777;"><table class="imgContainer" width="96" align="left" cellpadding="0" cellspacing="0" style="border-collapse:collapse; border-spacing:0;">
 	              <tr>';
-				if($feed[$x]['enclosure'] == !null){ // add photo if you got it
+				if($feed[$x]['enclosure'] == !null && $enclosure_good == TRUE){ // add photo if you got it
 	            	echo '<td class="authorPicture" style="padding-top:5px; padding-right:20px;"><span class="icon" style="padding-top:10px; padding-right:15px; padding-bottom:10px;"><img alt="image" src="'.$enclosure.'" width="110" border="0" vspace="0" hspace="0" style="display:block;" /></span></td>
 	              </tr></table>';
 				}
