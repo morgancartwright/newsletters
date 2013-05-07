@@ -222,21 +222,6 @@
 	                        <p>Copyright <img alt="" src="<?php echo IMAGES_ROOT ?>/copyright.png" border="0" height="10" width="10" /> 2013 <a style="text-decoration:underline; color:#0c87c7;" href="http://www.<?php echo $property_url; ?>"><?php echo $property_title; ?></a>, All rights reserved.</p>
 
 <!-- ******************** BEGIN DATRAN FOOTER: REMOVE FOR PRODUCTION ********************* -->
-	<p style="color: rgb(0, 51, 102); font-size: 12px;">
-		<b>ABOUT THIS E-MAIL</b><br />
-		Need to change this e-mail?<br />- To <strong>update</strong> your account, go <a href="https://secure.passport.mnginteractive.com/mngi/servletDispatch/ErightsPassportServlet.dyn?url=http%3A%2F%2Fwww.mercurynews.com&amp;rEmail=[-EMAILADDR-]"><strong>here</strong></a>.<br />- To <strong>unsubscribe</strong> from this newsletter, click <a href="https://secure.www.mercurynews.com/portlet/registration/html/unsubscribe.jsp?emailId=[-EMAILADDR-]&amp;memberId=[-MNGI_REGISTRATION_USERID-]&amp;offerId=[-LIST_EXTERNALID-]&amp;DMID=[-RECIPID-]&amp;DLIST=[-LIST_ID-]&amp;DTITLE=[-LIST_CUSTOM-]"><strong>here</strong></a>.<br />- To advertise in this newsletter, click <a href="mailto:sroberts@mercurynews.com"><strong>here</strong></a>.</p>
-	<p class="footer">
-		MediaNews Group, 101 W. Colfax Ave., Suite 950, Denver, CO 80202</p>           
-	                    </td>
-	                </tr>
-	            </table>
-				<!-- End of footer -->            
-	        </td>
-	    </tr>
-	</table>
-	</body>
-</html>
-<!-- ******************** END DATRAN FOOTER *************************** -->
 
 <?php
 

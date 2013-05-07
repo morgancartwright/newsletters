@@ -18,21 +18,19 @@
                	       </tr>
 <!-- BEGIN LIVE INTENT AD TAGS -->
 <?php
-// WRITE OUT THE AD CODES AFTER ITEMS 3 & 6 - NOTE: THE CODES ARE DIFFERENT
+// WRITE OUT THE AD CODES 
 if($displayCount == 3){
-	echo '<tr><td colspan="2" valign="top" class="column" style="padding-right:0px; padding-bottom:25px; padding-left:5px; font-family:Arial, Helvetica, sans-serif; font-weight:normal; font-size:14px; line-height:15pt; color:#777777;"><span style="padding-right:0px; padding-bottom:30px; padding-left:0px; font-family:Arial, Helvetica, sans-serif; font-weight:normal; font-size:14px; line-height:15pt; text-align:center; color:#777777;">
-<!-- BEGIN AD CODE 1 -->
-<table border="0" cellpadding="0" cellspacing="0" align="center"><tr><td colspan="2" style="text-align:center;"><a style="display: block; width: 300px; height: 250px;" href="http://MY.HEZIE.COM/click?s=56430&t=newsletter&sz=300x250&li={LIST_ID}&e={EMAIL}&p={PLACEMENT_ID}" rel="nofollow"><img src="http://MY.HEZIE.COM/imp?s=56430&t=newsletter&sz=300x250&li={LIST_ID}&e={EMAIL}&p={PLACEMENT_ID}" border="0" width="300" height="250"/></a></td></tr><tr style="display:block; height:1px; line-height:1px;"><td><img src="http://MY.HEZIE.COM/imp?s=56431&t=newsletter&sz=1x1&li={LIST_ID}&e={EMAIL}&p={PLACEMENT_ID}" height="1" width="10" /></td><td><img src="http://MY.HEZIE.COM/imp?s=56432&t=newsletter&sz=1x1&li={LIST_ID}&e={EMAIL}&p={PLACEMENT_ID}" height="1" width="10" /></td></tr><tr><td align="left"><a href="http://MY.HEZIE.COM/click?s=4677&t=newsletter&sz=116x15&li={LIST_ID}&e={EMAIL}&p={PLACEMENT_ID}" rel="nofollow"><img src="http://MY.HEZIE.COM/imp?s=4677&t=newsletter&sz=116x15&li={LIST_ID}&e={EMAIL}&p={PLACEMENT_ID}" border="0"/></a></td><td align="right"><a href="http://MY.HEZIE.COM/click?s=4678&t=newsletter&sz=69x15&li={LIST_ID}&e={EMAIL}&p={PLACEMENT_ID}" rel="nofollow"><img src="http://MY.HEZIE.COM/imp?s=4678&t=newsletter&sz=69x15&li={LIST_ID}&e={EMAIL}&p={PLACEMENT_ID}" border="0"/></a></td></tr></table>
-<!-- END AD CODE 1 -->
-</span><br /></td></tr>';
-}
-else if ($displayCount == 6){
 	echo '<tr><td colspan="2" valign="top" class="column" style="padding-right:0px; padding-bottom:25px; padding-left:5px; font-family:Arial, Helvetica, sans-serif; font-weight:normal; font-size:14px; line-height:15pt; color:#777777;"><span style="padding-right:0px; padding-bottom:30px; padding-left:0px; font-family:Arial, Helvetica, sans-serif; font-weight:normal; font-size:14px; line-height:15pt; text-align:center; color:#777777;">
 <!-- BEGIN AD CODE 2 -->
 <table border="0" cellpadding="0" cellspacing="0" align="center"><tr><td colspan="2"><a style="display: block; width: 300px; height: 250px;" href="http://MY.HEZIE.COM/click?s=56436&t=newsletter&sz=300x250&li={LIST_ID}&e={EMAIL}&p={PLACEMENT_ID}" rel="nofollow"><img src="http://MY.HEZIE.COM/imp?s=56436&t=newsletter&sz=300x250&li={LIST_ID}&e={EMAIL}&p={PLACEMENT_ID}" border="0" width="300" height="250"/></a></td></tr><tr style="display:block; height:1px; line-height:1px;"><td><img src="http://MY.HEZIE.COM/imp?s=56437&t=newsletter&sz=1x1&li={LIST_ID}&e={EMAIL}&p={PLACEMENT_ID}" height="1" width="10" /></td><td><img src="http://MY.HEZIE.COM/imp?s=56438&t=newsletter&sz=1x1&li={LIST_ID}&e={EMAIL}&p={PLACEMENT_ID}" height="1" width="10" /></td></tr><tr><td align="left"><a href="http://MY.HEZIE.COM/click?s=4677&t=newsletter&sz=116x15&li={LIST_ID}&e={EMAIL}&p={PLACEMENT_ID}" rel="nofollow"><img src="http://MY.HEZIE.COM/imp?s=4677&t=newsletter&sz=116x15&li={LIST_ID}&e={EMAIL}&p={PLACEMENT_ID}" border="0"/></a></td><td align="right"><a href="http://MY.HEZIE.COM/click?s=4678&t=newsletter&sz=69x15&li={LIST_ID}&e={EMAIL}&p={PLACEMENT_ID}" rel="nofollow"><img src="http://MY.HEZIE.COM/imp?s=4678&t=newsletter&sz=69x15&li={LIST_ID}&e={EMAIL}&p={PLACEMENT_ID}" border="0"/></a></td></tr></table>
 <!-- END AD CODE 2 -->
 </span><br /></td></tr>';
 }
+/*
+else if ($displayCount == 6){
+
+}
+*/
 ?>
 <!-- END LIVE INTENT AD TAGS -->
                    	    <tr bgcolor="#ffffff" class="row">

@@ -76,14 +76,18 @@
 			
 	    	$description = $feed[$x]['desc'];
 			$byline = $feed[$x]['byl'];
+			
+			$enclosure_good = TRUE; // this is a stub
+			
 			if($feed[$x]['enclosure'] == !null) {
 				$enclosure = $feed[$x]['enclosure'];
 			}
+						
 	    	$date = date('l F d, Y', strtotime($feed[$x]['date']));
 			
 			// begin displaying the output
 			// dtype 1 is a photo-only item
-			if($displayType == 1 && $feed[$x]['enclosure'] == !null) {
+			if($displayType == 1 && $feed[$x]['enclosure'] == !null && $enclosure_good == TRUE) {
 				echo  $enclosure;
 				$caption = $title;
 				break;
