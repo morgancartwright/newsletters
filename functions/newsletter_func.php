@@ -81,6 +81,10 @@
 			
 			if($feed[$x]['enclosure'] == !null) {
 				$enclosure = $feed[$x]['enclosure'];
+				$enclosure_size = getimagesize($enclosure);
+       			$enclosure_width = $enclosure_size[0].'<br>';
+       			$enclosure_height = $enclosure_size[1] . '<br>';
+				if($enclosure_height > $enclosure_width) $enclosure_good = FALSE;
 			}
 						
 	    	$date = date('l F d, Y', strtotime($feed[$x]['date']));
