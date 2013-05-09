@@ -20,8 +20,10 @@
 
 		// begin processing feeds
 		$rss = new DOMDocument(); // create a new doc to hold the output
+		
 		$feed = array(); // create array to hold the feed items
-
+		$cid_array = array(); // separate array to track dupes
+		
 		//loop through all the feeds
 		foreach($allFeeds as $key=>$value){ // key = rss feed url; value = number of items to display
 			//$thisFeed = CLEANUP_SCRIPT . '?feed='.$key;
@@ -31,7 +33,6 @@
 			
 			//loop though all the items in each feed
 			$itemCount = 0;
-			$cid_array = array(); // separate array to track dupes
 			
 	    	foreach ($rss->getElementsByTagName('item') as $node) {
 				if($node->getElementsByTagName('enclosure')->item(0) == !null) {
