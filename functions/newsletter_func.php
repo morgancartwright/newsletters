@@ -31,6 +31,8 @@
 			
 			//loop though all the items in each feed
 			$itemCount = 0;
+			$cid_array = array(); // separate array to track dupes
+			
 	    	foreach ($rss->getElementsByTagName('item') as $node) {
 				if($node->getElementsByTagName('enclosure')->item(0) == !null) {
 					$item = array (
@@ -51,8 +53,23 @@
 	            		'date' => $node->getElementsByTagName('pubDate')->item(0)->nodeValue,
 					);
 				}//else
-				array_push($feed, $item);
-				$itemCount++;
+				
+				$url = ($item[link]);
+				$path = parse_url($url, PHP_URL_PATH);
+				$pathComponents = explode("/", trim($path,"/"));
+			
+				$cid = $pathComponents[1];
+				
+				if(!in_array($cid, $cid_array)){
+					array_push($feed, $item);
+					if ($feed == null){
+						echo "does not compute";
+					}
+					$itemCount++;
+					echo "<br /><strong>FEED COUNT IS: </strong>" . count($feed) . "<br /><br /><br /><br />";
+					$cid_array[] = $cid; // add this item's cid to the de-dupe array
+				}
+				
 				if($itemCount == $feedItems) {
 					break;
 				}//if
@@ -88,14 +105,7 @@
 			}
 						
 	    	$date = date('l F d, Y', strtotime($feed[$x]['date']));
-			
-			
-	//						if($enclosure_good == TRUE){
-	//				echo '<br>Enc= ' . $enclosure;
-	//			}
-			
-			
-			
+	
 			// begin displaying the output
 			// dtype 1 is a photo-only item
 			if($displayType == 1 && $feed[$x]['enclosure'] == !null) {
