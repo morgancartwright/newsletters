@@ -66,7 +66,7 @@
 						echo "does not compute";
 					}
 					$itemCount++;
-					echo "<br /><strong>FEED COUNT IS: </strong>" . count($feed) . "<br /><br /><br /><br />";
+					//echo "<br /><strong>FEED COUNT IS: </strong>" . count($feed) . "<br /><br /><br /><br />";
 					$cid_array[] = $cid; // add this item's cid to the de-dupe array
 				}
 				

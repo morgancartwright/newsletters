@@ -16,7 +16,7 @@ if($topic == 'business') {
 	$title = "Biz Break";
 }
 else if($topic == 'entertainment'){
-	$feedInfo = array("http://feeds.mercurynews.com/mngi/rss/CustomRssServlet/568/200733.xml"=>1);
+	$feedInfo = array("http://feeds.mercurynews.com/mngi/rss/CustomRssServlet/568/200733.xml"=>15);
 	$title = "Entertainment Weekend";
 }
 else if($topic == 'living') {  
@@ -36,7 +36,7 @@ else if($topic == 'roadshow'){
 	$title = "Mr. Roadshow";
 } else if($topic == 'sanmateo'){
 	$feedInfo = array("http://feeds.mercurynews.com/mngi/rss/CustomRssServlet/568/268907.xml"=>5, "http://feeds.mercurynews.com/mngi/rss/CustomRssServlet/568/268908.xml"=>2, "http://feeds.mercurynews.com/mngi/rss/CustomRssServlet/568/268909.xml"=>2);
-	$title = "San Mateo County Times";
+	$title = "San Mateo Times";
 } else if ($topic == 'all') {
 	$feedInfo = array("http://feeds.mercurynews.com/mngi/rss/CustomRssServlet/568/225007.xml"=>2, "http://feeds.mercurynews.com/mngi/rss/CustomRssServlet/568/200223.xml"=>2,
 "http://feeds.mercurynews.com/mngi/rss/CustomRssServlet/568/200732.xml"=>2, "http://feeds.mercurynews.com/mngi/rss/CustomRssServlet/568/200222.xml"=>2, "http://feeds.mercurynews.com/mngi/rss/CustomRssServlet/568/200733.xml"=>2, "http://feeds.mercurynews.com/mngi/rss/CustomRssServlet/568/209705.xml"=>2, "http://feeds.mercurynews.com/mngi/rss/CustomRssServlet/568/200953.xml"=>2);
