@@ -31,9 +31,10 @@
 	
 	//IMAGES_ROOT = 'http://extras.bayareanewsgroup.com/images/email'; // moved to global config file
 	$limit = 20; // default list items if not defined per feed in 'prop_config.php' - also for global config
-		
+	
 	if(is_readable($config_file)) {
 	    require_once $config_file;
+		include_once 'config/bang_config.php';
 	} else {
 	    include('includes/404.php');
 	}
