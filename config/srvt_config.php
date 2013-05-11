@@ -4,8 +4,8 @@
 * ver. 0.6 5/2/2013 - wmc
 * Digital First Media
 */
-$property_title = "San Mateo County Times";
-$property_url = "sanmateotimes.com";
+$property_title = "San Ramon Valley Times";
+$property_url = "sanramonvalleytimes.com";
 date_default_timezone_set('America/Los_Angeles');
 
 $limit = 30; // max number of items that can be displayed

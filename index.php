@@ -4,22 +4,31 @@
 * ver. 0.6 5/2/2013 - wmc
 * Digital First Media
 */
-	require_once 'config/constants.php';
-	// grab the query string values from the URL and store in vars
-	//$property = "";
-	$valid_props = array('merc'=>1,'cct'=>2,'sv'=>3,'scs'=>4,'mch'=>5,'mij'=>6,'smct'=>7);
-	$property = strtolower(htmlspecialchars($_GET["prop"]));
+
+	if(is_readable('config/constants.php')) {
+	    require_once 'config/constants.php';
+	} else {
+	    include('includes/404_constants.php');
+	}	
+	if(is_readable('config/global_config.php')) {
+	    require_once 'config/global_config.php';
+	} else {
+	    include('includes/404_global_config.php');
+	}
 	
+	// grab the query string values from the URL and store in vars
+	// see constants.php for valid props array and default prop
+	$property = strtolower(htmlspecialchars($_GET["prop"]));
 	if (!array_key_exists($property, $valid_props)) {
     	$property = DEFAULT_PROP;
 	}
-
+	unset($valid_props);
+	
 	$topic = "";
 	$topic  = strtolower(htmlspecialchars($_GET["nl"]));
 	if($topic == "") $topic = DEFAULT_TOPIC;
 	
-	$name = ucwords(htmlspecialchars($_GET["name"])); // stub for customer name
-	
+	//$name = ucwords(htmlspecialchars($_GET["name"])); // stub for customer name
 	$prefix = $property . "_"; 
 	$config_file = 'config/'.$property . "_config.php"; // includes $feedInfo feed array
 	
@@ -29,12 +38,10 @@
 	
 	$caption = "";
 	
-	//IMAGES_ROOT = 'http://extras.bayareanewsgroup.com/images/email'; // moved to global config file
 	$limit = 20; // default list items if not defined per feed in 'prop_config.php' - also for global config
 	
 	if(is_readable($config_file)) {
 	    require_once $config_file;
-		//include_once 'config/bang_config.php';
 	} else {
 	    include('includes/404.php');
 	}
@@ -43,13 +50,7 @@
 	} else {
 	    include('includes/404.php');
 	}
-	
-	if(is_readable('config/global_config.php')) {
-	    require_once 'config/global_config.php';
-	} else {
-	    include('includes/404.php');
-	}
-	
+
 	$short_title = ucwords( str_replace('-', ' ', $topic) );
 	
 	// Buffer the output so we can get the first headline and use it
