@@ -9,7 +9,7 @@
 	define("DEFAULT_TOPIC", "news");
 	define("IMAGES_ROOT", 'images');
 	define("CLEANUP_SCRIPT","http://qa.cal-one.net/email/clean_markup.php");
-	define("IMAGE_FACTOR", 1.5);
+	define("IMAGE_FACTOR", 1.3);
 	
 	$valid_props = array('merc'=>1,'cct'=>2,'sv'=>3,'scs'=>4,'mch'=>5,'mij'=>6,'smct'=>7, 'ect'=>8, 'wct'=>9, 'trivalley'=>10, 'srvt'=>11);
 	
