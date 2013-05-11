@@ -7,7 +7,7 @@
 	require_once 'config/constants.php';
 	// grab the query string values from the URL and store in vars
 	//$property = "";
-	$valid_props = array('merc'=>1,'cct'=>2,'sv'=>3,'scs'=>4,'mch'=>5,'mij'=>6);
+	$valid_props = array('merc'=>1,'cct'=>2,'sv'=>3,'scs'=>4,'mch'=>5,'mij'=>6,'smct'=>7);
 	$property = strtolower(htmlspecialchars($_GET["prop"]));
 	
 	if (!array_key_exists($property, $valid_props)) {
@@ -34,7 +34,7 @@
 	
 	if(is_readable($config_file)) {
 	    require_once $config_file;
-		include_once 'config/bang_config.php';
+		//include_once 'config/bang_config.php';
 	} else {
 	    include('includes/404.php');
 	}

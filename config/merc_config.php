@@ -11,57 +11,36 @@ date_default_timezone_set('America/Los_Angeles');
 $limit = 30; // max number of items that can be displayed
 $title = "";
 
-if($topic == 'business') {
-	$feedInfo = array("http://feeds.mercurynews.com/mngi/rss/CustomRssServlet/568/200222.xml"=>15);
-	$title = "Biz Break";
-}
 
-if($topic == 'sports') {
-	$feedInfo = array("http://feeds.mercurynews.com/mngi/rss/CustomRssServlet/568/268200.xml"=>1, "http://feeds.mercurynews.com/mngi/rss/CustomRssServlet/568/268201.xml"=>15);
-$title = "Inside Sports";
-}
 
-if($topic == 'travel'){
-	$feedInfo = array("http://feeds.mercurynews.com/mngi/rss/CustomRssServlet/568/200777.xml"=>15);
-	$title = "Travel";
-}
-
-if($topic == 'roadshow'){
-	$feedInfo = array("http://feeds.mercurynews.com/mngi/rss/CustomRssServlet/568/200764.xml"=>5);
-	$title = "Mr. Roadshow";
-}
-
-if($topic == 'sanmateo'){
-	$feedInfo = array("http://feeds.mercurynews.com/mngi/rss/CustomRssServlet/568/268907.xml"=>5, "http://feeds.mercurynews.com/mngi/rss/CustomRssServlet/568/268908.xml"=>2, "http://feeds.mercurynews.com/mngi/rss/CustomRssServlet/568/268909.xml"=>2);
-	$title = "San Mateo Times";
-}
-
-if ($topic == 'all') {
-	$feedInfo = array(
-"http://feeds.mercurynews.com/mngi/rss/CustomRssServlet/568/200734.xml"=>1,
-"http://feeds.mercurynews.com/mngi/rss/CustomRssServlet/568/200748.xml"=>1,
-"http://feeds.mercurynews.com/mngi/rss/CustomRssServlet/568/209701.xml"=>1,
-"http://feeds.mercurynews.com/mngi/rss/CustomRssServlet/568/225007.xml"=>1,
-"http://feeds.mercurynews.com/mngi/rss/CustomRssServlet/568/213301.xml"=>1,
-"http://feeds.mercurynews.com/mngi/rss/CustomRssServlet/568/206801.xml"=>1,
-"http://feeds.mercurynews.com/mngi/rss/CustomRssServlet/568/268200.xml"=>1,
-"http://feeds.mercurynews.com/mngi/rss/CustomRssServlet/568/268201.xml"=>1, "http://feeds.mercurynews.com/mngi/rss/CustomRssServlet/568/200223.xml"=>1,
-"http://feeds.mercurynews.com/mngi/rss/CustomRssServlet/568/200777.xml"=>1,
-"http://feeds.mercurynews.com/mngi/rss/CustomRssServlet/568/200764.xml"=>1,
-"http://feeds.mercurynews.com/mngi/rss/CustomRssServlet/568/268907.xml"=>1,
-"http://feeds.mercurynews.com/mngi/rss/CustomRssServlet/568/268908.xml"=>1,
-"http://feeds.mercurynews.com/mngi/rss/CustomRssServlet/568/268909.xml"=>1,
-"http://feeds.mercurynews.com/mngi/rss/CustomRssServlet/568/200732.xml"=>1, "http://feeds.mercurynews.com/mngi/rss/CustomRssServlet/568/200222.xml"=>1, "http://feeds.mercurynews.com/mngi/rss/CustomRssServlet/568/200733.xml"=>1, "http://feeds.mercurynews.com/mngi/rss/CustomRssServlet/568/209705.xml"=>1, "http://feeds.mercurynews.com/mngi/rss/CustomRssServlet/568/200953.xml"=>1);
-	$title = "All Feeds";
-}
-/*
-if { // defaults to news
+if ($topic == 'news') {
 	$feedInfo = array("http://feeds.mercurynews.com/mngi/rss/CustomRssServlet/568/200734.xml"=>3,"http://feeds.mercurynews.com/mngi/rss/CustomRssServlet/568/200748.xml"=>3, "http://feeds.mercurynews.com/mngi/rss/CustomRssServlet/568/209701.xml"=>3);
 $title = "5-Minute Merc";
 }
 
+else if($topic == 'business') {
+	$feedInfo = array("http://feeds.mercurynews.com/mngi/rss/CustomRssServlet/568/200222.xml"=>15);
+	$title = "Biz Break";
+}
+
+else if($topic == 'sports') {
+	$feedInfo = array("http://feeds.mercurynews.com/mngi/rss/CustomRssServlet/568/268200.xml"=>1, "http://feeds.mercurynews.com/mngi/rss/CustomRssServlet/568/268201.xml"=>15);
+$title = "Inside Sports";
+}
+
+else if($topic == 'sanmateonews'){
+	$feedInfo = array("http://feeds.mercurynews.com/mngi/rss/CustomRssServlet/568/268907.xml"=>5, "http://feeds.mercurynews.com/mngi/rss/CustomRssServlet/568/268908.xml"=>2, "http://feeds.mercurynews.com/mngi/rss/CustomRssServlet/568/268909.xml"=>2);
+	$title = "San Mateo Times";
+}
+
+else { // call the bang config
+	include 'bang_config.php';
+}
+
+
 if ($adtag == 'livingnl') {
     $adtag = 'lifeculturenl';
 }
-*/
+
+
 ?>
