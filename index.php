@@ -43,7 +43,7 @@
 	if(is_readable($config_file)) {
 	    require_once $config_file;
 	} else {
-	    include('includes/404.php');
+	    include('includes/404_prop_config.php');
 	}
 	if(is_readable($func_file)) {
 	    require_once $func_file;
