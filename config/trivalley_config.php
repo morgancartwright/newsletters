@@ -12,7 +12,7 @@ $limit = 30; // max number of items that can be displayed
 $title = "";
 
 if($topic == 'news'){
-	$feedInfo = array("http://feeds.mercurynews.com/mngi/rss/CustomRssServlet/568/268907.xml"=>5, "http://feeds.mercurynews.com/mngi/rss/CustomRssServlet/568/268908.xml"=>2, "http://feeds.mercurynews.com/mngi/rss/CustomRssServlet/568/268909.xml"=>2);
+	$feedInfo = array("http://feeds.contracostatimes.com/mngi/rss/CustomRssServlet/571/269008.xml"=>10, "http://feeds.contracostatimes.com/mngi/rss/CustomRssServlet/571/244701.xml"=>10);
 	$title = "News";
 }
 
@@ -22,7 +22,7 @@ else if($topic == 'business') {
 }
 
 else if($topic == 'sports') {
-	$feedInfo = array("http://feeds.mercurynews.com/mngi/rss/CustomRssServlet/568/268200.xml"=>1, "http://feeds.mercurynews.com/mngi/rss/CustomRssServlet/568/268201.xml"=>15);
+	$feedInfo = array("http://feeds.contracostatimes.com/mngi/rss/CustomRssServlet/571/244701.xml"=>15);
 $title = "Inside Sports";
 }
 

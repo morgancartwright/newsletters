@@ -22,7 +22,7 @@ else if($topic == 'business') {
 }
 
 else if($topic == 'sports') {
-	$feedInfo = array("http://feeds.mercurynews.com/mngi/rss/CustomRssServlet/568/268200.xml"=>1, "http://feeds.mercurynews.com/mngi/rss/CustomRssServlet/568/268201.xml"=>15);
+	$feedInfo = array("http://feeds.mercurynews.com/mngi/rss/CustomRssServlet/568/268909.xml"=>15);
 $title = "Inside Sports";
 }
 
